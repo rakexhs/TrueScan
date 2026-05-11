@@ -205,3 +205,10 @@ Operational policy file:
 
 For auditability, treat `outputs/` as the source-of-truth artifact store for reproduced runs.
 
+---
+
+## Contributors
+
+- Rakesh Saraswat
+- [Rusha Mistry](https://github.com/Rusha304)
+
