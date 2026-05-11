@@ -1,0 +1,10 @@
+TrueScan Visual-Only — primary model selection
+============================================================
+Selected primary model : main_effnet_b3
+Best val AUROC         : 0.9063
+Checkpoint             : /content/drive/MyDrive/TrueScan_VisualOnly/checkpoints/main_effnet_b3_best.pt
+Top-K snapshots        : 3
+
+Candidate scoreboard (val AUROC):
+  main_xception          0.9033
+  main_effnet_b3         0.9063

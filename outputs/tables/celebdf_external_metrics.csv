@@ -1,0 +1,2 @@
+model,n_celebdf_images,auroc,f1,bal_acc,acc,prec,rec,pr_auc
+main_effnet_b3,4000,0.8087,0.755,0.729,0.729,0.6889,0.835,0.7845

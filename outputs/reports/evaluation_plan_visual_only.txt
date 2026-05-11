@@ -1,0 +1,50 @@
+EVALUATION PLAN VISUAL ONLY
+======================================================================
+scope: image-level visual synthetic-media verification
+scope_refinement: TrueScan was originally scoped as a multimodal (visual + audio) deepfake
+detection system. During Phase 3 the active project team changed from
+three members to two. To preserve implementation depth, reproducibility,
+and evaluation rigor for the remaining two members, we refined the scope
+to image-level visual deepfake detection only. Audio detection (ASVspoof,
+WaveFake, AASIST, LFCC features) and video-level temporal aggregation
+are deferred to future work.
+future_work:
+  - audio deepfake detection (ASVspoof / WaveFake / AASIST)
+  - video-level temporal aggregation across frames
+  - multimodal fusion of audio and visual signals
+primary_metrics:
+  AUROC: threshold-independent discriminability; primary headline number
+  F1: reported at threshold=0.50 AND at the val-tuned optimal threshold
+  balanced_accuracy: (sensitivity + specificity) / 2; robust to class imbalance
+  accuracy: reported but never alone
+  precision: per-class precision
+  recall: per-class recall
+  PR-AUC: reported when there is meaningful class imbalance
+  confusion_matrix: plotted for FF++ test and Celeb-DF
+evaluation_levels:
+  image_level: all metrics computed per face crop (no video-level voting)
+split_strategy:
+  train_val_test: 70 / 15 / 15 stratified at parent-identity level
+  calibration_held_out: 10% of val held out exclusively for temperature scaling
+  celebdf: external zero-shot test only; never used for training or tuning
+calibration_and_abstention:
+  temperature_scaling: fit T via LBFGS on the held-out calibration split
+  metrics: ECE (15 bins) and Brier score before/after
+  abstention_thresholds:
+    p_fake>=0.70: likely_synthetic
+    p_fake<=0.30: likely_authentic
+    else: uncertain
+  coverage_risk_curve: reported as outputs/plots/abstention_curve.png
+robustness:
+  perturbations:
+    - clean
+    - JPEG q=75
+    - JPEG q=50
+    - JPEG q=30
+    - Gaussian noise sigma=10
+    - Gaussian noise sigma=25
+    - Gaussian blur k=5
+    - downscale 0.5x then upscale
+  reporting: AUROC and F1 deltas vs clean; visualized as a bar chart
+imbalance_handling: WeightedRandomSampler + Focal+BCE blend; per-class metrics always reported
+leakage_awareness: identity-level splits + assertion check; Celeb-DF kept separate

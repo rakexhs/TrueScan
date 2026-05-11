@@ -1,0 +1,47 @@
+{
+  "scope": "image-level visual synthetic-media verification",
+  "scope_refinement": "TrueScan was originally scoped as a multimodal (visual + audio) deepfake\ndetection system. During Phase 3 the active project team changed from\nthree members to two. To preserve implementation depth, reproducibility,\nand evaluation rigor for the remaining two members, we refined the scope\nto image-level visual deepfake detection only. Audio detection (ASVspoof,\nWaveFake, AASIST, LFCC features) and video-level temporal aggregation\nare deferred to future work.",
+  "future_work": [
+    "audio deepfake detection (ASVspoof / WaveFake / AASIST)",
+    "video-level temporal aggregation across frames",
+    "multimodal fusion of audio and visual signals"
+  ],
+  "baseline": {
+    "name": "EfficientNet-B0 (timm)",
+    "role": "fast pipeline-validation baseline",
+    "rationale": "Lowest-cost backbone with strong transfer learning; lets us verify the data pipeline within ~30 min on Colab GPU.",
+    "expected_auroc_ffpp": "0.88-0.93"
+  },
+  "main_xception": {
+    "name": "Xception (timm legacy_xception with embedded PyTorch fallback)",
+    "role": "literature-aligned main detector for FaceForensics++",
+    "rationale": "Original Roessler et al. (2019) FF++ baseline; depthwise separable convolutions are well-suited to capture deepfake spatial artifacts.",
+    "expected_auroc_ffpp": "0.95-0.99"
+  },
+  "head_to_head_b3": {
+    "name": "EfficientNet-B3 (timm)",
+    "role": "modern compound-scaled CNN compared head-to-head with Xception",
+    "rationale": "Provides a stronger comparison than Xception alone and lets us pick whichever wins on FF++ val for downstream analysis.",
+    "expected_auroc_ffpp": "0.93-0.98"
+  },
+  "aux_frequency_branch": {
+    "name": "FreqAux MLP (concatenated with backbone logit)",
+    "rationale": "Section 7b motivates an explicit DCT input; the small MLP fuses backbone logits with frequency-domain features, a novel addition vs the standard FF++ baseline."
+  },
+  "training_enhancements": [
+    "two-stage fine-tuning (head-only warmup -> full unfreeze)",
+    "cosine LR with linear warmup",
+    "EMA of weights (decay 0.999)",
+    "Focal Loss + class-weighted BCE blend, label smoothing 0.05",
+    "gradient clipping (1.0)",
+    "mixed precision (AMP)",
+    "top-K=3 checkpoint snapshots for snapshot ensembling",
+    "Mixup / CutMix at batch level",
+    "auto-resume from latest checkpoint on Colab disconnect"
+  ],
+  "inference_enhancements": [
+    "Test-Time Augmentation (TTA): hflip + multi-crop, mean of 4 logits",
+    "Snapshot ensemble of top-3 checkpoints for the primary model"
+  ],
+  "primary_model_selection": "better of (Xception, EfficientNet-B3) on FF++ val AUROC; recorded in outputs/reports/primary_model_selection.txt"
+}

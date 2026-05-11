@@ -1,0 +1,7 @@
+dataset,subset,compression,path,video_count,status
+FF++,real,c23,/content/drive/MyDrive/TrueScan/datasets/ffpp/original_sequences/youtube/c23/videos,1000,OK
+FF++,Deepfakes,c23,/content/drive/MyDrive/TrueScan/datasets/ffpp/manipulated_sequences/Deepfakes/c23/videos,1000,OK
+FF++,Face2Face,c23,/content/drive/MyDrive/TrueScan/datasets/ffpp/manipulated_sequences/Face2Face/c23/videos,1000,OK
+FF++,FaceSwap,c23,/content/drive/MyDrive/TrueScan/datasets/ffpp/manipulated_sequences/FaceSwap/c23/videos,1000,OK
+FF++,NeuralTextures,c23,/content/drive/MyDrive/TrueScan/datasets/ffpp/manipulated_sequences/NeuralTextures/c23/videos,1000,OK
+Celeb-DF v2,all,mixed,/content/drive/MyDrive/TrueScan/datasets/celeb_df/extracted,6529,EXTRACTED

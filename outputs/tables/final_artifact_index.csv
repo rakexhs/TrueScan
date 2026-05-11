@@ -1,0 +1,103 @@
+category,relative_path,size_bytes
+plots,outputs/plots/abstention_curve.png,45954
+plots,outputs/plots/baseline_effnet_b0_training_curves.png,70250
+plots,outputs/plots/celebdf_sample_inspection.png,916651
+plots,outputs/plots/compression_sharpness_analysis.png,98672
+plots,outputs/plots/confusion_matrix_celebdf.png,24396
+plots,outputs/plots/confusion_matrix_ffpp.png,20710
+plots,outputs/plots/custom_vs_ffpp_score_shift.png,21860
+plots,outputs/plots/ffpp_class_distribution.png,32943
+plots,outputs/plots/ffpp_manipulation_distribution.png,48020
+plots,outputs/plots/ffpp_sample_frame_inspection.png,2607876
+plots,outputs/plots/frequency_dct_real_vs_fake.png,1383376
+plots,outputs/plots/main_effnet_b3_training_curves.png,72635
+plots,outputs/plots/main_xception_training_curves.png,69163
+plots,outputs/plots/radial_spectrum_real_vs_fake.png,78099
+plots,outputs/plots/reliability_diagram.png,69676
+plots,outputs/plots/robustness_performance_drop.png,45990
+plots,outputs/plots/sanity_train_batch.png,558935
+tables,outputs/tables/abstention_coverage_risk.csv,614
+tables,outputs/tables/calibration_results.csv,78
+tables,outputs/tables/celebdf_external_metrics.csv,125
+tables,outputs/tables/celebdf_folder_counts.csv,80
+tables,outputs/tables/celebdf_sample_metadata.csv,294
+tables,outputs/tables/compression_sharpness_stats.csv,10822
+tables,outputs/tables/custom_benchmark_manifest.csv,1
+tables,outputs/tables/custom_inference_audit.csv,1
+tables,outputs/tables/custom_retest_gate.csv,1
+tables,outputs/tables/dataset_status.csv,726
+tables,outputs/tables/face_detection_failure_summary.csv,341
+tables,outputs/tables/ffpp_split_summary.csv,169
+tables,outputs/tables/ffpp_test_metrics.csv,264
+tables,outputs/tables/ffpp_video_metadata_sample.csv,1414
+tables,outputs/tables/final_metrics_table.csv,1174
+tables,outputs/tables/gradcam_examples.csv,1063
+tables,outputs/tables/missingness_readability_audit.csv,129133
+tables,outputs/tables/per_manipulation_metrics.csv,273
+tables,outputs/tables/primary_evaluation_summary.csv,164
+tables,outputs/tables/publish_threshold_grid.csv,7745
+tables,outputs/tables/robustness_results.csv,568
+reports,outputs/reports/custom_debug_summary.json,1079
+reports,outputs/reports/custom_debug_summary.txt,809
+reports,outputs/reports/environment_summary.txt,648
+reports,outputs/reports/evaluation_plan_visual_only.json,2574
+reports,outputs/reports/evaluation_plan_visual_only.txt,2386
+reports,outputs/reports/feasibility_risks_visual_only.json,3799
+reports,outputs/reports/feasibility_risks_visual_only.txt,3216
+reports,outputs/reports/final_results_summary.json,4607
+reports,outputs/reports/final_results_summary.txt,4256
+reports,outputs/reports/inference_policy_config.json,141
+reports,outputs/reports/missingness_readability_summary.txt,319
+reports,outputs/reports/model_architecture_summary.txt,575
+reports,outputs/reports/model_plan_visual_only.json,2771
+reports,outputs/reports/model_plan_visual_only.txt,2625
+reports,outputs/reports/preprocessing_plan_visual_only.json,3199
+reports,outputs/reports/preprocessing_plan_visual_only.txt,2971
+reports,outputs/reports/primary_model_selection.txt,410
+reports,outputs/reports/sample_inference_result.json,1625
+gradcam,outputs/gradcam/CelebDF_hard_id19_id24_0008_00323.png,60919
+gradcam,outputs/gradcam/FN_692_610_00050.png,71977
+gradcam,outputs/gradcam/FP_522_00305.png,71194
+gradcam,outputs/gradcam/TN_679_00059.png,59771
+gradcam,outputs/gradcam/TP_084_042_00096.png,70729
+gradcam,outputs/gradcam/inference_053_00000.png,66553
+gradcam,outputs/gradcam/inference_914_899_00087.png,70054
+gradcam,outputs/gradcam/inference_Celebrity Lookalikes AI.png,77248
+gradcam,outputs/gradcam/inference_Deepfake Celeb Images.png,67286
+gradcam,outputs/gradcam/inference_Deepfakes Problem for Celebrities.png,68642
+gradcam,outputs/gradcam/inference_Elon Look Deepfake.png,59654
+gradcam,outputs/gradcam/inference_FKA Twigs Deepfake.png,69561
+gradcam,outputs/gradcam/inference_Human Deepfake Images of Celeb.png,71028
+gradcam,outputs/gradcam/inference_Screenshot 2026-05-08 at 9.42.30 AM.png,74708
+gradcam,outputs/gradcam/inference_Screenshot 2026-05-08 at 9.44.11 AM.png,58668
+gradcam,outputs/gradcam/inference_Screenshot 2026-05-08 at 9.45.01 AM.png,77247
+manifests,manifests/celebdf_manifest.csv,942820
+manifests,manifests/celebdf_test_images.csv,498317
+manifests,manifests/face_crop_manifest.csv,3986616
+manifests,manifests/ffpp_eda_frames_manifest.csv,6191
+manifests,manifests/ffpp_test_images.csv,142402
+manifests,manifests/ffpp_test_videos.csv,24226
+manifests,manifests/ffpp_train_images.csv,1351816
+manifests,manifests/ffpp_train_videos.csv,113256
+manifests,manifests/ffpp_val_images.csv,140032
+manifests,manifests/ffpp_val_videos.csv,24076
+manifests,manifests/ffpp_video_manifest.csv,778130
+manifests,manifests/ffpp_video_manifest_subset.csv,155730
+checkpoints,checkpoints/baseline_effnet_b0_best.pt,35301367
+checkpoints,checkpoints/baseline_effnet_b0_last.pt,70181422
+checkpoints,checkpoints/baseline_effnet_b0_topk_epoch08.pt,17653995
+checkpoints,checkpoints/baseline_effnet_b0_topk_epoch09.pt,17653995
+checkpoints,checkpoints/baseline_effnet_b0_topk_epoch10.pt,17653995
+checkpoints,checkpoints/main_effnet_b3_best.pt,90175971
+checkpoints,checkpoints/main_effnet_b3_last.pt,179520575
+checkpoints,checkpoints/main_effnet_b3_topk_epoch09.pt,45092963
+checkpoints,checkpoints/main_effnet_b3_topk_epoch10.pt,45092963
+checkpoints,checkpoints/main_effnet_b3_topk_epoch11.pt,45092963
+checkpoints,checkpoints/main_xception_best.pt,171610169
+checkpoints,checkpoints/main_xception_last.pt,342724289
+checkpoints,checkpoints/main_xception_topk_epoch11.pt,85807693
+checkpoints,checkpoints/main_xception_topk_epoch13.pt,85807693
+checkpoints,checkpoints/main_xception_topk_epoch14.pt,85807693
+logs,logs/baseline_effnet_b0_training_log.csv,1523
+logs,logs/main_effnet_b3_training_log.csv,1900
+logs,logs/main_xception_training_log.csv,2093

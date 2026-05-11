@@ -1,0 +1,10 @@
+{
+  "triage": {
+    "low": 0.3,
+    "high": 0.7
+  },
+  "binary_publish": {
+    "threshold": 0.22,
+    "tune_source": "celebdf_external"
+  }
+}

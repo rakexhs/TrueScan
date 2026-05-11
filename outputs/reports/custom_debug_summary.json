@@ -1,0 +1,25 @@
+{
+  "primary_model": "main_effnet_b3",
+  "inference_policy": {
+    "triage": {
+      "low": 0.3,
+      "high": 0.7
+    },
+    "binary_publish": {
+      "threshold": 0.22,
+      "tune_source": "celebdf_external"
+    }
+  },
+  "custom_manifest_path": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/custom_benchmark_manifest.csv",
+  "custom_audit_path": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/custom_inference_audit.csv",
+  "custom_gate_path": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/custom_retest_gate.csv",
+  "plots": {
+    "custom_score_histogram": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/custom_score_histogram.png",
+    "custom_vs_ffpp_score_shift": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/custom_vs_ffpp_score_shift.png"
+  },
+  "notes": [
+    "Strict publication policy: uncertain counted as wrong.",
+    "Binary publish mode tuned for fake recall; triage mode retained for operational usage.",
+    "Crop pipeline includes fallback detector and pre-crop bypass for OOD/custom inputs."
+  ]
+}

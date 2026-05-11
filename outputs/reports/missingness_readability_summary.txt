@@ -1,0 +1,8 @@
+TrueScan Visual-Only — Missingness / Readability Audit
+============================================================
+Audit mode         : sampled
+FF++ videos checked: 500
+Celeb-DF checked   : 500
+Total rows audited : 1000
+Issues found       : 0
+No missing, zero-byte, or unreadable files detected in the sampled audit.

@@ -1,0 +1,79 @@
+FEASIBILITY RISKS VISUAL ONLY
+======================================================================
+scope: image-level visual synthetic-media verification
+scope_refinement: TrueScan was originally scoped as a multimodal (visual + audio) deepfake
+detection system. During Phase 3 the active project team changed from
+three members to two. To preserve implementation depth, reproducibility,
+and evaluation rigor for the remaining two members, we refined the scope
+to image-level visual deepfake detection only. Audio detection (ASVspoof,
+WaveFake, AASIST, LFCC features) and video-level temporal aggregation
+are deferred to future work.
+future_work:
+  - audio deepfake detection (ASVspoof / WaveFake / AASIST)
+  - video-level temporal aggregation across frames
+  - multimodal fusion of audio and visual signals
+risks:
+  id: R1
+  risk: Colab session disconnects mid-training (12-24h cap)
+  likelihood: high
+  impact: high
+  mitigations:
+    - checkpoint to Drive after every epoch
+    - auto-resume from the latest checkpoint at startup
+    - top-K=3 snapshot retention so we keep usable weights even on truncation
+  id: R2
+  risk: MTCNN face-detection failures bias the training set
+  likelihood: medium
+  impact: medium
+  mitigations:
+    - track success rate per split x label and report it
+    - center-crop fallback when no face detected (logged, not discarded)
+    - lower confidence threshold from 0.90 to 0.85 if any class shows >10% failure
+  id: R3
+  risk: Overfitting to FF++ c23 compression artifacts (poor Celeb-DF generalization)
+  likelihood: high
+  impact: high
+  mitigations:
+    - JPEG augmentation across q in {30..95}
+    - Mixup / CutMix and stochastic erasing
+    - auxiliary DCT branch to make the model less reliant on RGB compression cues
+    - mandatory zero-shot Celeb-DF evaluation in section 14
+  id: R4
+  risk: Severe class imbalance (4:1 fake:real on FF++) inflates accuracy
+  likelihood: certain
+  impact: high
+  mitigations:
+    - WeightedRandomSampler + Focal Loss + class-weighted BCE
+    - never report accuracy alone; always report AUROC, F1, balanced accuracy, PR-AUC
+  id: R5
+  risk: 1-day training budget
+  likelihood: high
+  impact: medium
+  mitigations:
+    - curated 1000-video subset (200 real + 800 manipulated)
+    - mixed precision and 224x224 input
+    - two-stage fine-tuning to converge fast
+    - FAST_DEV_RUN switch to validate the pipeline before the full run
+  id: R6
+  risk: Temperature scaling fails on overconfident logits
+  likelihood: medium
+  impact: medium
+  mitigations:
+    - label smoothing reduces source overconfidence
+    - separate calibration split (10% of val) prevents leakage
+    - reliability diagram is a required artifact in section 16
+  id: R7
+  risk: Identity leakage across splits inflates test metrics
+  likelihood: low if enforced; high if not
+  impact: critical
+  mitigations:
+    - parent_id-level split + explicit assertion in section 5
+    - Celeb-DF treated as fully external
+  id: R8
+  risk: Drive I/O bottleneck during training
+  likelihood: high
+  impact: medium
+  mitigations:
+    - extract frames + crops to /content (local SSD)
+    - persist checkpoints to Drive only at epoch boundaries
+    - num_workers > 0 + pin_memory=True

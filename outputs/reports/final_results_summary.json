@@ -1,0 +1,81 @@
+{
+  "project": "TrueScan \u2014 Visual Synthetic Image Verification System",
+  "scope": "image-level visual deepfake detection only",
+  "scope_refinement": "TrueScan was originally scoped as a multimodal (visual + audio) deepfake\ndetection system. During Phase 3 the active project team changed from\nthree members to two. To preserve implementation depth, reproducibility,\nand evaluation rigor for the remaining two members, we refined the scope\nto image-level visual deepfake detection only. Audio detection (ASVspoof,\nWaveFake, AASIST, LFCC features) and video-level temporal aggregation\nare deferred to future work.",
+  "datasets": {
+    "training": "FaceForensics++ c23 (curated 1000-video subset)",
+    "subset_composition": "200 real + 200 each of Deepfakes/Face2Face/FaceSwap/NeuralTextures",
+    "external_test": "Celeb-DF v2 (zero-shot)"
+  },
+  "eda_findings": {
+    "class_balance_plot": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/ffpp_class_distribution.png",
+    "manipulation_plot": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/ffpp_manipulation_distribution.png",
+    "compression_analysis": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/compression_sharpness_analysis.png",
+    "frequency_dct_plot": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/frequency_dct_real_vs_fake.png",
+    "radial_spectrum_plot": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/radial_spectrum_real_vs_fake.png",
+    "missingness_summary": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/reports/missingness_readability_summary.txt"
+  },
+  "preprocessing": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/reports/preprocessing_plan_visual_only.json",
+  "model_plan": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/reports/model_plan_visual_only.json",
+  "evaluation_plan": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/reports/evaluation_plan_visual_only.json",
+  "feasibility_risks": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/reports/feasibility_risks_visual_only.json",
+  "training_results": {
+    "baseline_effnet_b0": {
+      "best_val_auroc": 0.9120030381944445
+    },
+    "main_xception": {
+      "best_val_auroc": 0.9033094618055555
+    },
+    "main_effnet_b3": {
+      "best_val_auroc": 0.9062630208333333
+    }
+  },
+  "primary_model_selection": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/reports/primary_model_selection.txt",
+  "primary_model": "main_effnet_b3",
+  "ffpp_test_metrics": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/ffpp_test_metrics.csv",
+  "celebdf_external": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/celebdf_external_metrics.csv",
+  "per_manipulation": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/per_manipulation_metrics.csv",
+  "tta_metrics": {
+    "auroc": 0.9326,
+    "f1": 0.917,
+    "bal_acc": 0.8495,
+    "acc": 0.8717,
+    "pr_auc": 0.9822
+  },
+  "snapshot_ensemble": {
+    "snapshots_used": 3,
+    "auroc": 0.9351,
+    "f1": 0.9141,
+    "bal_acc": 0.8568,
+    "acc": 0.8683,
+    "pr_auc": 0.9829
+  },
+  "robustness": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/robustness_results.csv",
+  "calibration": {
+    "temperature": 0.787,
+    "results_csv": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/calibration_results.csv",
+    "reliability_diagram": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/reliability_diagram.png"
+  },
+  "abstention": {
+    "thresholds": {
+      "likely_authentic": "p_fake<=0.30",
+      "likely_synthetic": "p_fake>=0.70"
+    },
+    "coverage_csv": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/abstention_coverage_risk.csv",
+    "curve_png": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/plots/abstention_curve.png"
+  },
+  "gradcam_examples": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/gradcam_examples.csv",
+  "sample_inference": "/content/drive/MyDrive/TrueScan_VisualOnly/outputs/reports/sample_inference_result.json",
+  "limitations": [
+    "training restricted to a 1000-video curated FF++ subset for time-budget reasons",
+    "Celeb-DF labelling depends on folder-name heuristics; ambiguous folders are excluded",
+    "no video-level temporal aggregation; everything is per-frame",
+    "audio modality is out of scope for this notebook"
+  ],
+  "future_work": [
+    "audio deepfake detection (ASVspoof / WaveFake / AASIST)",
+    "video temporal aggregation (e.g. mean / majority over per-frame scores)",
+    "multimodal fusion of audio and visual signals",
+    "self-blended-image style synthetic data augmentation"
+  ]
+}

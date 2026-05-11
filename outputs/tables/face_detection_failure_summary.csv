@@ -1,0 +1,9 @@
+split,label_name,total,fallbacks,nondetector_modes,precrop_bypass,fallback_rate,nondetector_rate
+celebdf_test,fake,2000,0,0,0,0.0,0.0
+celebdf_test,real,2000,0,0,0,0.0,0.0
+test,fake,960,0,0,0,0.0,0.0
+test,real,240,0,0,0,0.0,0.0
+train,fake,8960,0,0,0,0.0,0.0
+train,real,2240,0,0,0,0.0,0.0
+val,fake,960,0,0,0,0.0,0.0
+val,real,240,0,0,0,0.0,0.0

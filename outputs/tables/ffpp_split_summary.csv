@@ -1,0 +1,5 @@
+split,Deepfakes,Face2Face,FaceSwap,NeuralTextures,real,total
+train,140,140,140,140,140,700
+val,30,30,30,30,30,150
+test,30,30,30,30,30,150
+TOTAL,200,200,200,200,200,1000

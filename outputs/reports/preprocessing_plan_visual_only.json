@@ -1,0 +1,61 @@
+{
+  "scope": "image-level visual synthetic-media verification",
+  "scope_refinement": "TrueScan was originally scoped as a multimodal (visual + audio) deepfake\ndetection system. During Phase 3 the active project team changed from\nthree members to two. To preserve implementation depth, reproducibility,\nand evaluation rigor for the remaining two members, we refined the scope\nto image-level visual deepfake detection only. Audio detection (ASVspoof,\nWaveFake, AASIST, LFCC features) and video-level temporal aggregation\nare deferred to future work.",
+  "future_work": [
+    "audio deepfake detection (ASVspoof / WaveFake / AASIST)",
+    "video-level temporal aggregation across frames",
+    "multimodal fusion of audio and visual signals"
+  ],
+  "dataset_plan": {
+    "training_dataset": "FaceForensics++ c23 (curated 1000-video subset)",
+    "subset_composition": "200 real + 200 each of Deepfakes / Face2Face / FaceSwap / NeuralTextures",
+    "external_test": "Celeb-DF v2 (zero-shot, never used for tuning)",
+    "split_design": "identity-level 70/15/15; manipulated derivatives travel with their source identity"
+  },
+  "face_detection_and_crop": {
+    "tool": "MTCNN (facenet-pytorch) on selected DEVICE, with center-crop fallback",
+    "min_face_size": 80,
+    "confidence_threshold": 0.9,
+    "margin": "30% around the bounding box",
+    "output_size": "224x224",
+    "fallback": "center-crop + resize to 224x224 when no face is detected",
+    "eda_motivation": "EDA showed mostly clean frames; MTCNN locks classification onto the face region."
+  },
+  "frame_sampling": {
+    "frames_per_train_video": 16,
+    "frames_per_eval_video": 8,
+    "sampling_strategy": "uniformly spaced indices over the full clip"
+  },
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "note": "ImageNet normalization to match pretrained backbones"
+  },
+  "training_augmentation": {
+    "horizontal_flip": "p=0.50",
+    "jpeg_compression": "q sampled from {30, 40, 50, 60, 75, 90}, p=0.40",
+    "gaussian_noise": "sigma in [5, 25] / 255, p=0.25",
+    "downscale_then_up": "random factor 0.5..0.85, p=0.25",
+    "color_jitter": "brightness=0.2, contrast=0.2, saturation=0.1, p=0.30",
+    "random_erasing": "p=0.25",
+    "mixup_cutmix": "one of MixUp(alpha=0.2) or CutMix(alpha=1.0), p=0.50",
+    "eda_motivation": "JPEG/Laplacian analysis showed sharpness drops sharply below q=75; matching the augmentation distribution to in-the-wild compression expected at deployment."
+  },
+  "frequency_features_aux": {
+    "description": "log1p(|DCT|) of the grayscale 224x224 face crop, used as a secondary input branch",
+    "rationale": "Section 7b shows distinct radial-spectrum signatures across manipulations; an auxiliary frequency branch lets the main model exploit them."
+  },
+  "class_imbalance_handling": {
+    "sampling": "WeightedRandomSampler at the image level (inverse class frequency)",
+    "loss": "Focal Loss (gamma=2.0) blended with class-weighted BCE; label smoothing eps=0.05"
+  },
+  "leakage_prevention": "splits are stratified at parent-identity level; an assertion in section 5 verifies zero overlap."
+}

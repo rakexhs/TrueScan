@@ -1,0 +1,6 @@
+case,crop_path,gradcam_path,p_fake,label_binary,target_explained
+TP,/content/truescan_visual_only_scratch/crops/test/fake/Face2Face/084_042_00096.jpg,/content/drive/MyDrive/TrueScan_VisualOnly/outputs/gradcam/TP_084_042_00096.png,0.9811722636222839,1,fake_logit
+TN,/content/truescan_visual_only_scratch/crops/test/real/real/679_00059.jpg,/content/drive/MyDrive/TrueScan_VisualOnly/outputs/gradcam/TN_679_00059.png,0.02221202477812767,0,real_logit
+FP,/content/truescan_visual_only_scratch/crops/test/real/real/522_00305.jpg,/content/drive/MyDrive/TrueScan_VisualOnly/outputs/gradcam/FP_522_00305.png,0.9485130906105042,0,fake_logit
+FN,/content/truescan_visual_only_scratch/crops/test/fake/NeuralTextures/692_610_00050.jpg,/content/drive/MyDrive/TrueScan_VisualOnly/outputs/gradcam/FN_692_610_00050.png,0.03323963284492493,1,real_logit
+CelebDF_hard,/content/truescan_visual_only_scratch/crops/celebdf_test/fake/fake/id19_id24_0008_00323.jpg,/content/drive/MyDrive/TrueScan_VisualOnly/outputs/gradcam/CelebDF_hard_id19_id24_0008_00323.png,0.50048828125,1,fake_logit

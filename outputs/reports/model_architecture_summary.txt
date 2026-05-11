@@ -1,0 +1,23 @@
+TrueScan Visual-Only — Model Architecture Summary
+============================================================
+
+baseline_effnet_b0
+  backbone        : efficientnet_b0
+  use_freq_branch : False
+  total params    : 4.34 M
+  trainable params: 4.34 M
+  epochs (planned): 10
+
+main_xception
+  backbone        : xception
+  use_freq_branch : True
+  total params    : 21.37 M
+  trainable params: 21.37 M
+  epochs (planned): 15
+
+main_effnet_b3
+  backbone        : efficientnet_b3
+  use_freq_branch : True
+  total params    : 11.13 M
+  trainable params: 11.13 M
+  epochs (planned): 12

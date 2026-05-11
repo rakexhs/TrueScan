@@ -1,0 +1,23 @@
+TrueScan Custom Debug Summary
+==================================================
+Primary model: main_effnet_b3
+Custom manifest: /content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/custom_benchmark_manifest.csv
+Custom audit: /content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/custom_inference_audit.csv
+Custom gate: /content/drive/MyDrive/TrueScan_VisualOnly/outputs/tables/custom_retest_gate.csv
+
+Inference policy:
+{
+  "triage": {
+    "low": 0.3,
+    "high": 0.7
+  },
+  "binary_publish": {
+    "threshold": 0.22,
+    "tune_source": "celebdf_external"
+  }
+}
+
+Notes:
+- Strict publication policy: uncertain counted as wrong.
+- Binary publish mode tuned for fake recall; triage mode retained for operational usage.
+- Crop pipeline includes fallback detector and pre-crop bypass for OOD/custom inputs.
